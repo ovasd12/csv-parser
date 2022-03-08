@@ -28,13 +28,14 @@
 패키지 - 클래스 - 함수 구조 구리기
 
 ### 패키지 구조
+````bash
 package - CsvParser (파일구문 분석)
-   ⎿ class 분석파일의 라인을 루프를 돌며 수행 기능
+  ⎿ class 분석파일의 라인을 루프를 돌며 수행 기능
       ⎿ method 분석파일 루프
-   ⎿ class wrapper, 공백 제거 기능
+  ⎿ class wrapper, 공백 제거 기능
       ⎿ method wrapper 제거 기능
       ⎿ method 공백제거 기능
    ⎿ class dictionary 비교 및 치환 기능
       ⎿ method dictionary 비교 및 체크 기능
       ⎿ method dictionary 내용으로 치환 기능
-
+````
