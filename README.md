@@ -20,20 +20,21 @@
 - 공란 및 wrapper 문자 제거해주는 함수
 - 문자열을 읽으며 파일의 내용을 저장하는 함수
 
-### 필요한 클래스33333322
+### 필요한 클래스
 - 저장할 문자열을 사전과 비교 및 정상적인 값으로 수정해주는 클래스
 - 저장할 문자열을 공란 및 wrapper 제거해주며 separator 기준으로 나눠주는 클래스
 - 저장할 문자열을 루프를 돌며 저장하는 클래스
 
-### 패키지 구조 구상중123
+### 패키지 구조 구상
 ````bash
 package - CsvParser (파일구문 분석)
-  ⎿ class 분석파일의 라인을 루프를 돌며 수행 기능
-      ⎿ method 분석파일 루프
-  ⎿ class wrapper, 공백 제거 기능
-      ⎿ method wrapper 제거 기능
-      ⎿ method 공백제거 기능
-   ⎿ class dictionary 비교 및 치환 기능
-      ⎿ method dictionary 비교 및 체크 기능
-      ⎿ method dictionary 내용으로 치환 기능
+  ⎿ class 분석파일의 라인을 루프를 돌며 수행 기능 // LineParser
+      ⎿ method 분석파일 루프 // repeatParsing
+  ⎿ class wrapper, 공백 제거 기능 // ParserDisposal
+      ⎿ method wrapper 제거 기능 // removeWrapper
+      ⎿ method 공백제거 기능      // removeBlank
+   ⎿ class dictionary 비교 및 치환 기능 // DictionaryFilter
+      ⎿ method dictionary 비교 및 체크 기능 // compareDictionary
+      ⎿ method dictionary 내용으로 치환 기능 // replaceDictionary
+        
 ````
