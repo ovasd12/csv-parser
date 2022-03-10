@@ -30,6 +30,7 @@
 package - CsvParser (파일구문 분석)
   ⎿ class 분석파일의 라인을 루프를 돌며 수행 기능 // LineParser
       ⎿ method 분석파일 루프 // repeatParsing
+      ⎿ method 분석파일 불러오기 // findFileData
   ⎿ class wrapper, 공백 제거 기능 // ParserDisposal
       ⎿ method wrapper 제거 기능 // removeWrapper
       ⎿ method 공백제거 기능      // removeBlank
