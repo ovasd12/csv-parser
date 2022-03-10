@@ -1,4 +1,4 @@
-package jang.heesu.study.dictionary
+package jang.heesu.study.normalizer.dictionary
 
 import com.sun.org.apache.bcel.internal.generic.ArrayType
 
