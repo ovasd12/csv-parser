@@ -74,4 +74,6 @@ package - CsvParser (파일구문 분석)
 x     ⎿ LineParser : Line Parser가 여러개일 이유가 있는가? Object로 선언하면 안되는 이유
                       파일 데이터를 읽는다는게 무슨뜻? 변수명이 filepath 아닐까
 x     ⎿ ParserDisposal : wrapper character 는 어디서 가져올거?, 공백제거기능 왜 별도로 만듬?
+
+ - dictionary 부분에서 
 ````
