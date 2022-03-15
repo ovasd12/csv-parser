@@ -1,6 +1,10 @@
 package jang.heesu.study.csv
+
+import scala.io.Source
+
 /**
  * csv 파일에 대한 정보 저장(csv 컬럼, csv 내용)
+ *
  * @param path 분석파일의 경로
  * @param delimiter 파일내 구분자
  * @param wrapper 파일내 감싸는 문자
@@ -8,8 +12,11 @@ package jang.heesu.study.csv
  * */
 class CsvInfo(path: String, delimiter: String, wrapper: String) {
 
-  def getPath: String = {
-    path
+  //파일의 경로 정보 return
+  def getPath: Array[String] = {
+//    val path = "파일경로"
+    val pathArray = Source.fromFile(path).getLines.toArray
+    return pathArray
   }
   //구분자로 csv 파일 내용 나누는 기능 필요
   def getDelimiter: String = {
@@ -19,10 +26,11 @@ class CsvInfo(path: String, delimiter: String, wrapper: String) {
   def getWrapper: String = {
     wrapper
   }
-  def csvHeader: String = {
+  def csvHeader: List[String] = {
     ???
   }
   def csvBody: String = {
     ???
   }
+
 }
