@@ -1,3 +1,4 @@
+import jang.heesu.study.csv.CsvInfo
 import jang.heesu.study.scalaTest.scalaTestDivision
 import org.junit.Assert.assertEquals
 
@@ -8,4 +9,10 @@ class scalaTestJunit {
       val actual : Int = scalaTestDivision.Division(55,5)
       assertEquals(exepected, actual)
     }
+
+  @org.junit.Test
+    def csvTest: Unit ={
+    CsvInfo("/csv-parser/src/main/resources/test.csv",",","")
+
+  }
 }

@@ -11,8 +11,8 @@ object Parser {
    * @param reader
    * @return CsvInfo  파일의 컬럼, value 값
    * */
-  def parse(info: CsvInfo, reader: () = (path: String) => List[String]): CsvInfo = {
-        ???
-    }
+//  def parse(info: CsvInfo, reader: () = (path: String) => List[String]): CsvInfo = {
+//        ???
+//    }
 
 }

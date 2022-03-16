@@ -1,7 +1,5 @@
 package jang.heesu.study.csv
-
 import scala.io.Source
-
 /**
  * csv 파일에 대한 정보 저장(csv 컬럼, csv 내용)
  *
@@ -14,7 +12,7 @@ class CsvInfo(path: String, delimiter: String, wrapper: String) {
 
   //파일의 경로 정보 return
   def getPath: Array[String] = {
-//    val path = "파일경로"
+    println("path: ") + path
     val pathArray = Source.fromFile(path).getLines.toArray
     return pathArray
   }
