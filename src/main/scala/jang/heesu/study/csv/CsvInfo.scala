@@ -12,7 +12,6 @@ class CsvInfo(path: String, delimiter: String, wrapper: String) {
 
   //파일의 경로 정보 return
   def getPath: Array[String] = {
-    println("path: ") + path
     val pathArray = Source.fromFile(path).getLines.toArray
     return pathArray
   }
@@ -24,11 +23,6 @@ class CsvInfo(path: String, delimiter: String, wrapper: String) {
   def getWrapper: String = {
     wrapper
   }
-  def csvHeader: List[String] = {
-    ???
-  }
-  def csvBody: String = {
-    ???
-  }
+
 
 }
