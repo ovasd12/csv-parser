@@ -1,7 +1,8 @@
-import jang.heesu.study.csv.{CsvInfo, csvHeader}
+import jang.heesu.study.csv.{CsvInfo, csvBody, csvHeader}
 import jang.heesu.study.scalaTest.scalaTestDivision
 import org.junit.Assert.assertEquals
 
+import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
 
 class scalaTest {
@@ -23,17 +24,19 @@ class scalaTest {
   def getDelimiterTest: Unit ={
     val Delimiter = ","
     val c1 = new CsvInfo("src/main/resources/test.csv",",","")
-    val csvHeader = new csvHeader
+    c1.getDelimiter(c1.getPath)
+    val headerValue = new csvHeader
+    val bodyValue = new csvBody
     val pathArray = c1.getPath
-    println("paaaa : " + pathArray.toList)
-    val test = Array[String]()
-    //배열에 값을 넣고싶은데 에러가 발생함...수정필요
-//    println("testasdfasdf : " + test(0))
-//    for(a<-0 until pathArray.length){
-////      csvHeader.csvHeader(a) = pathArray(a)
-//      println("ttt : " + pathArray(a).split(Delimiter).toString)
-//    }
-//    test.foreach(row=>println(s"$row"))
+    val pathArraySplit = ArrayBuffer[String]()
 
+//    println("asd : " + pathArray(0).split(Delimiter).toList + " || length : " + pathArray(0).split(Delimiter).toList.length)
+    pathArray(0).split(Delimiter).foreach(row=>headerValue.csvHeader += row)
+
+    for(a<-1 until pathArray.length){
+//        pathArray(a).split(Delimiter).toList.foreach(row=>pathArraySplit += row)
+      pathArray(a).split(Delimiter).toList.foreach(row=>bodyValue.csvBody += row)
+    }
+//    println("*** csvBody.csvBody : " + bodyValue.csvBody + " || length : " + bodyValue.csvBody.length)
   }
 }
