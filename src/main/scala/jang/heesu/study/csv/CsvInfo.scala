@@ -31,7 +31,6 @@ class CsvInfo(path: String, delimiter: String, wrapper: String) {
       pathArray(a).split(delimiter).toList.foreach(row=>bodyValue.csvBody += row)
     }
 //    println("*** csvBody : " + bodyValue.csvBody + " || length : " + bodyValue.csvBody.length)
-
   }
   //앞뒤로 감싸져 있는 부분 제거기능 필요
   def getWrapper: String = {
