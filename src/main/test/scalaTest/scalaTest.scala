@@ -28,15 +28,38 @@ class scalaTest {
     val headerValue = new csvHeader
     val bodyValue = new csvBody
     val pathArray = c1.getPath
-    val pathArraySplit = ArrayBuffer[String]()
 
-//    println("asd : " + pathArray(0).split(Delimiter).toList + " || length : " + pathArray(0).split(Delimiter).toList.length)
+    println("header : " + pathArray(0).split(Delimiter).toList + " || length : " + pathArray(0).split(Delimiter).toList.length)
     pathArray(0).split(Delimiter).foreach(row=>headerValue.csvHeader += row)
 
     for(a<-1 until pathArray.length){
-//        pathArray(a).split(Delimiter).toList.foreach(row=>pathArraySplit += row)
       pathArray(a).split(Delimiter).toList.foreach(row=>bodyValue.csvBody += row)
     }
-//    println("*** csvBody.csvBody : " + bodyValue.csvBody + " || length : " + bodyValue.csvBody.length)
+    println("*** csvBody.csvBody : " + bodyValue.csvBody + " || length : " + bodyValue.csvBody.length)
   }
+  @org.junit.Test
+  def getWrapperTest: Unit ={
+    val c1 = new CsvInfo("src/main/resources/test.csv",",","\"")
+    val path = c1.getPath
+    c1.getDelimiter(path)
+
+    val header = c1.headerValue.csvHeader
+    val body = c1.bodyValue.csvBody
+
+//    header.foreach(row=>row.replace("\"",""))
+//    for(a<-0 until header.length){
+//      header(a) = header(a).replace("\"","")
+//      println("ddd : " + header(a))
+//    }
+//    for(a<-0 until body.length){
+//      body(a) = body(a).replace("\"","")
+//      println("ddd : " + body(a))
+//    }
+    val test = c1.getWrapper(c1.bodyValue.csvBody)
+    println("test : " + test)
+
+  }
+
+
+
 }

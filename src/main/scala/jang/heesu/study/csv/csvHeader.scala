@@ -8,3 +8,6 @@ import scala.collection.mutable.ArrayBuffer
 class csvHeader {
   val csvHeader = ArrayBuffer[String]()
 }
+object csvHeader2 {
+  val csvHeader2 = ArrayBuffer[String]()
+}

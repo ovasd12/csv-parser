@@ -10,6 +10,8 @@ import scala.io.Source
  * header, body 를 더 잘게 쪼개서 List[String] 로 모아두면 더 좋을 것
  * */
 class CsvInfo(path: String, delimiter: String, wrapper: String) {
+  val headerValue = new csvHeader
+  val bodyValue = new csvBody
 
   //파일의 경로 정보 return
   def getPath: Array[String] = {
@@ -18,23 +20,28 @@ class CsvInfo(path: String, delimiter: String, wrapper: String) {
   }
   //구분자로 csv 파일 내용 나누는 기능 필요
   def getDelimiter(pathArray:Array[String]): Unit = {
-    val headerValue = new csvHeader
-    val bodyValue = new csvBody
-    val pathArraySplit = ArrayBuffer[String]()
-
     //header 정보 header 참조객체에 저장
 //    println("**** header : " + pathArray(0).split(delimiter).toList + " || length : " + pathArray(0).split(delimiter).toList.length)
-    pathArray(0).split(delimiter).foreach(row=>headerValue.csvHeader += row)
+//    pathArray(0).split(delimiter).foreach(row=>headerValue.csvHeader += row)
+    pathArray(0).split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)",-1).foreach(row=>headerValue.csvHeader += row)
 
     //body 정보 body 참조객체에 저장
     for(a<-1 until pathArray.length){
-      pathArray(a).split(delimiter).toList.foreach(row=>bodyValue.csvBody += row)
+//      pathArray(a).split(delimiter).toList.foreach(row=>bodyValue.csvBody += row)
+      //"" 로 묶여있는 문자열을 정규식을 통해 묶여있는 부분들의 , 는 건너뛰도록 정의
+      pathArray(a).split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)",-1).toList.foreach(row=>bodyValue.csvBody += row)
     }
-//    println("*** csvBody : " + bodyValue.csvBody + " || length : " + bodyValue.csvBody.length)
+    println("*** csvBody : " + bodyValue.csvBody + " || length : " + bodyValue.csvBody.length)
   }
-  //앞뒤로 감싸져 있는 부분 제거기능 필요
-  def getWrapper: String = {
-    wrapper
+
+  //앞뒤로 감싸져 있는 부분 제거기능
+  def getWrapper(pathArray:ArrayBuffer[String]): ArrayBuffer[String] = {
+
+    for(a<-0 until pathArray.length){
+      pathArray(a) = pathArray(a).replace(wrapper,"")
+      println("ddd : " + pathArray(a))
+    }
+    return pathArray
   }
 
 
