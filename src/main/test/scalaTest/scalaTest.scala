@@ -1,4 +1,5 @@
 import jang.heesu.study.csv.{CsvInfo, csvBody, csvHeader}
+import jang.heesu.study.dictionary.DictionaryReader
 import jang.heesu.study.scalaTest.scalaTestDivision
 import org.junit.Assert.assertEquals
 
@@ -55,11 +56,26 @@ class scalaTest {
 //      body(a) = body(a).replace("\"","")
 //      println("ddd : " + body(a))
 //    }
-    val test = c1.getWrapper(c1.bodyValue.csvBody)
-    println("test : " + test)
-
+    val headTest = c1.getWrapper(c1.headerValue.csvHeader)
+    val bodyTest = c1.getWrapper(c1.bodyValue.csvBody)
+    println("headTest : " + headTest + "\nbodyTest : " + bodyTest)
   }
-
-
+  //dictionary read 기능 테스트
+  @org.junit.Test
+  def dictionaryReaderTest: Unit = {
+    val d = new DictionaryReader
+    val test = d.read("src/main/resources/dictionary")
+    println("test : " + test.dictionaryValue.toList)
+  }
+  //사전데이터에 맞는 값으로 수정해주는 기능
+  @org.junit.Test
+  def replaceTest: Unit = {
+    ???
+  }
+  //비교데이터와 사전을 비교 및 수정
+  @org.junit.Test
+  def NormalizerTest: Unit = {
+    ???
+  }
 
 }

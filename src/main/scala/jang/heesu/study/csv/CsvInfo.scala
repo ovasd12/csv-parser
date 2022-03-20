@@ -21,7 +21,7 @@ class CsvInfo(path: String, delimiter: String, wrapper: String) {
   //구분자로 csv 파일 내용 나누는 기능 필요
   def getDelimiter(pathArray:Array[String]): Unit = {
     //header 정보 header 참조객체에 저장
-//    println("**** header : " + pathArray(0).split(delimiter).toList + " || length : " + pathArray(0).split(delimiter).toList.length)
+//    println("**** header  : " + pathArray(0).split(delimiter).toList + " || length : " + pathArray(0).split(delimiter).toList.length)
 //    pathArray(0).split(delimiter).foreach(row=>headerValue.csvHeader += row)
     pathArray(0).split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)",-1).foreach(row=>headerValue.csvHeader += row)
 
@@ -36,10 +36,8 @@ class CsvInfo(path: String, delimiter: String, wrapper: String) {
 
   //앞뒤로 감싸져 있는 부분 제거기능
   def getWrapper(pathArray:ArrayBuffer[String]): ArrayBuffer[String] = {
-
     for(a<-0 until pathArray.length){
       pathArray(a) = pathArray(a).replace(wrapper,"")
-      println("ddd : " + pathArray(a))
     }
     return pathArray
   }
