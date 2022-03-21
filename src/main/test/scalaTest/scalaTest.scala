@@ -78,4 +78,11 @@ class scalaTest {
     ???
   }
 
+  //call-by-name  방식의 호출 //https://medium.com/@OutOfBedlam/scala-call-by-value-vs-call-by-name-734a79c75ccb
+  @org.junit.Test
+  def ParserTest(info: CsvInfo, reader: () = (path: String) => List[String]): Unit = {
+      println("ddd")
+
+  }
+
 }
