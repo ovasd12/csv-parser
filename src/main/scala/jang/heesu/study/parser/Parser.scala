@@ -12,10 +12,11 @@ object Parser {
    * @return CsvInfo  파일의 컬럼, value 값
    * */
   def parse(info: CsvInfo, reader:String => List[String]): CsvInfo = {
-        val lines:List[String] = reader(info.getPath)
-//        val CsvHeader = parseLine(lines.head)
-        lines.map(line =>parseLine(line, info.getDelimiter, info.getWrapper))
-        return info
+    val lines:List[String] = reader(info.getPath)
+    info.headerValue.csvHeader ++= parseLine(lines.head,info.getDelimiter,info.getWrapper)
+    info.bodyValue.csvBody ++= lines.tail.map(line => parseLine(line, info.getDelimiter, info.getWrapper))
+
+    return info
     }
 
   def parseLine(line:String, delimiter:String, wrapper:String ): List[String] ={
@@ -23,12 +24,14 @@ object Parser {
   }
 
   def splitLine(line:String, delimiter:String) : List[String] ={
-    line.split(delimiter).toList
+//    line.split(delimiter).toList
+    line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)",-1).toList
   }
 
   def removeWrapper(cell:String, wrapper:String) : String={
-    if (cell.head == wrapper && cell.tail.equals(wrapper) ) cell.trim.substring(1,cell.length-1)
-    else cell
+    if (cell.head.toString.equals(wrapper) && cell.last.toString.equals(wrapper) ) {
+      cell.trim.substring(1,cell.length-1)
+    } else cell
   }
 
 }

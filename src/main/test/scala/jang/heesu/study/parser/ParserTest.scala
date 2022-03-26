@@ -1,5 +1,8 @@
 package jang.heesu.study.parser
+import jang.heesu.study.csv.CsvInfo
 import org.junit.Assert.assertEquals
+
+import scala.io.Source
 
 class ParserTest {
   @org.junit.Test
@@ -28,12 +31,26 @@ class ParserTest {
   }
   @org.junit.Test
   def testsplitLine_1: Unit ={
-    val line : String =  "제품코드,제품명,수량,단가,금액,위치"
+    val line : String =  "0002,B,2,200,2000,\"강남구,서초동\""
     val delimiter : String = ","
     val wrapper:String = "\""
 
     println("splitline : " + Parser.splitLine(line,delimiter))
     println("parser line : " + Parser.parseLine(line, delimiter, wrapper))
   }
+  @org.junit.Test
+  def testPatser_1: Unit ={
+    val path = "src/main/resources/test.csv"
+    val line : String =  "0002,B,2,200,2000,\"강남구,서초동\""
+    val delimiter : String = ","
+    val wrapper:String = "\""
 
+    val csvInfo = new CsvInfo(path, delimiter = ",", wrapper = "\"")
+    val parser = Parser.parse(csvInfo,(path:String)=>Source.fromFile(path).getLines.toList)
+
+    println(parser.headerValue.csvHeader)
+    println(parser.bodyValue.csvBody)
+
+
+  }
 }
