@@ -10,8 +10,8 @@ import scala.io.Source
  * header, body 를 더 잘게 쪼개서 List[String] 로 모아두면 더 좋을 것
  * */
 class CsvInfo(path: String, delimiter: String, wrapper: String) {
-  val headerValue = new csvHeader
-  val bodyValue = new csvBody
+  val headerValue = new CsvHeader
+  val bodyValue = new CsvBody
 
   //파일의 경로 정보 return
   def getPath: String= {

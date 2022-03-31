@@ -13,8 +13,8 @@ object Parser {
    * */
   def parse(info: CsvInfo, reader:String => List[String]): CsvInfo = {
     val lines:List[String] = reader(info.getPath)
-    info.headerValue.csvHeader ++= parseLine(lines.head,info.getDelimiter,info.getWrapper)
-    info.bodyValue.csvBody ++= lines.tail.map(line => parseLine(line, info.getDelimiter, info.getWrapper))
+//    info.headerValue.csvHeader ++= parseLine(lines.head,info.getDelimiter,info.getWrapper)
+//    info.bodyValue.csvBody ++= lines.tail.map(line => parseLine(line, info.getDelimiter, info.getWrapper))
 
     return info
     }
@@ -25,6 +25,7 @@ object Parser {
 
   def splitLine(line:String, delimiter:String) : List[String] ={
 //    line.split(delimiter).toList
+    //정규식 별도로 빼놓기
     line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)",-1).toList
   }
 
