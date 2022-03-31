@@ -47,7 +47,7 @@ class ParserTest extends FunSuite{
     val parser = Parser.parse(csvInfo,(path:String)=>Source.fromFile(path).getLines.toList)
 
 //    println(parser.headerValue.csvHeader)
-//    println(parser.bodyValue.csvBody)
+    println(parser.bodyValue(1).foreach(a=>println(a)))
 
     //assert 로 구현해놓기
   }

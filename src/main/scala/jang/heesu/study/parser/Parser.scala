@@ -13,8 +13,8 @@ object Parser {
    * */
   def parse(info: CsvInfo, reader:String => List[String]): CsvInfo = {
     val lines:List[String] = reader(info.getPath)
-//    info.headerValue.csvHeader ++= parseLine(lines.head,info.getDelimiter,info.getWrapper)
-//    info.bodyValue.csvBody ++= lines.tail.map(line => parseLine(line, info.getDelimiter, info.getWrapper))
+//    info.headerValue ++= parseLine(lines.head,info.getDelimiter,info.getWrapper)
+    info.bodyValue ++= lines.map(line => parseLine(line, info.getDelimiter, info.getWrapper))
 
     return info
     }
