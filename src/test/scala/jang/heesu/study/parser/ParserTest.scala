@@ -51,4 +51,15 @@ class ParserTest extends FunSuite{
 
     //assert 로 구현해놓기
   }
+  test("testPatser_2"){
+    val path = "src/main/resources/test.csv"
+    val csvInfo = new CsvInfo(path, delimiter = ",", wrapper = "\"")
+    val parser = Parser.parse(csvInfo,(path:String)=>Source.fromFile(path).getLines.toList)
+
+    println("getHeader : " + parser.bodyValue.getHeader())
+    println("getcol int 파라미터 : " + parser.bodyValue.getCol(0))
+    println("getcol string : " + parser.bodyValue.getCol("제품명"))
+    println("getcol where : " + parser.bodyValue.getCol("제품코드", "0003"))
+    //assert 로 구현해놓기
+  }
 }

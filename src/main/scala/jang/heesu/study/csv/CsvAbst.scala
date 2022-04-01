@@ -8,4 +8,6 @@ trait CsvAbst {
 
   def getCol(colName:String):List[String]
 
+  def getCol(colName:String, colValue:String):List[String]
+
 }
