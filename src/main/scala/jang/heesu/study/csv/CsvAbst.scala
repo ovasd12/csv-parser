@@ -1,7 +1,6 @@
 package jang.heesu.study.csv
 
 trait CsvAbst {
-
   def getHeader():List[String]
 
   def getCol(idx:Int):List[String]
