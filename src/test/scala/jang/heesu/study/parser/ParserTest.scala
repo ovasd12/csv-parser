@@ -47,22 +47,22 @@ class ParserTest extends FunSuite{
     val parser = Parser.parse(csvInfo,(path:String)=>Source.fromFile(path).getLines.toList)
 //    val parser = Parser.parse(csvInfo,(path:String)=>Source.fromFile(path).getLines.toList)
 
-    println("parser : " + parser.bodyValue)
-//    println(parser.bodyValue(1).foreach(a=>println(a)))
+    println("parser : " + parser.CsvValue)
+//    println(parser.CsvValue(1).foreach(a=>println(a)))
   }
   test("testPatser_2"){
     val path = "src/main/resources/test.csv"
     val csvInfo = new CsvInfo(path, delimiter = ",", wrapper = "\"")
     val parser = Parser.parse(csvInfo,(path:String)=>Source.fromFile(path).getLines.toList)
 
-//    println("getHeader : " + parser.bodyValue.getHeader())
-//    println("getcol int 파라미터 : " + parser.bodyValue.getCol(0))
-//    println("getcol string : " + parser.bodyValue.getCol("제품명"))
-//    println("getcol where : " + parser.bodyValue.getCol("제품코드", "0003"))
+//    println("getHeader : " + parser.CsvValue.getHeader())
+//    println("getcol int 파라미터 : " + parser.CsvValue.getCol(0))
+//    println("getcol string : " + parser.CsvValue.getCol("제품명"))
+//    println("getcol where : " + parser.CsvValue.getCol("제품코드", "0003"))
     //assert 로 구현해놓기
-    assert(parser.bodyValue.getHeader() == List("제품코드", "제품명", "수량", "단가", "금액", "위치"))
-    assert(parser.bodyValue.getCol(0) == List("0001","0002","0003"))
-    assert(parser.bodyValue.getCol("제품명") == List("A","B","C"))
-    assert(parser.bodyValue.getCol("제품코드","0003") == List("0003","C","3","300","3000","권선구,권선동"))
+    assert(parser.CsvValue.getHeader() == List("제품코드", "제품명", "수량", "단가", "금액", "위치"))
+    assert(parser.CsvValue.getCol(0) == List("0001","0002","0003"))
+    assert(parser.CsvValue.getCol("제품명") == List("A","B","C"))
+    assert(parser.CsvValue.getCol("제품코드","0003") == List("0003","C","3","300","3000","권선구,권선동"))
   }
 }
