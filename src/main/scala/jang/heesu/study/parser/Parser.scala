@@ -24,7 +24,7 @@ object Parser {
   }
 
   def splitLine(line:String, delimiter:String) : List[String] ={
-    val regex = delimiter + Regular
+    val regex = delimiter + REGULAR_SPLIT
     line.split(regex, -1).toList
   }
 

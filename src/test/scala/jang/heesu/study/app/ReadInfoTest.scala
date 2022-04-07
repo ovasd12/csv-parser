@@ -1,17 +1,27 @@
 package jang.heesu.study.app
 
+import jang.heesu.study.csv.{CsvInfo, CsvValue}
+import jang.heesu.study.parser.Parser
 import org.scalatest.FunSuite
 import org.specs2.control.Functions.toStrictFunction1
 import org.specs2.control.Properties.aProperty
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
+import scala.io.Source
 
 class ReadInfoTest extends FunSuite {
   test("read file test") {
     val t = new ReadInfo
     val path = "src/main/resources/test.csv"
     println("readinfo file : " + t.readFile(path))
+
+    val csvInfo = new CsvInfo(path, delimiter = ",", wrapper = "\"")
+    val parser = Parser.parse(csvInfo,(path:String)=>Source.fromFile(path).getLines.toList)
+
+    println(parser.CsvValue.getHeader2().toList)
+    parser.CsvValue.getHeader2.toArray()
+
   }
 
   test("list file read test"){
@@ -23,5 +33,21 @@ class ReadInfoTest extends FunSuite {
       z += t.readFile(listFile.toList(a).toString)
     }
     println("ddd : " + t.fileUnion(listFile))
+  }
+  test("changeColumn"){
+    val testData = Array("제품코드", "제품명", "수량","단가","금액","위치") // 현재 list로 받고 있으므로 컬럼변경을 위해선 array로 변경 필요
+
+    val standardData = "제품코드"
+    val changeData = "제품이름111"
+    val changeData2 = "수량량"
+    val changeNum = 3
+    val changeIdx = testData.indexOf(standardData)
+
+//    testData(changeIdx) = changeData
+//    testData(changeNum) = changeData2
+
+    val t = new ReadInfo
+    println(t.columnChagne(testData,standardData,changeData).toList)
+    println(t.columnChagne(testData,5,changeData).toList)
   }
 }

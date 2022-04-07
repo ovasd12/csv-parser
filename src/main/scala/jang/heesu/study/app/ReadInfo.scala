@@ -24,11 +24,26 @@ class ReadInfo {
     multData
   }
   //여러 파일의 내용을 합치는 기능
-  def fileSum: Unit ={
-    ???
+  def fileSum(multData:ArrayBuffer[List[String]]): List[String] = {
+    multData.flatMap(_.toList).toList
   }
+
   //조회한 컬럼내용 변경기능
-  def columChange: Unit ={
-    ???
+  def columnChagne(header:ArrayBuffer[String],originData:String,changeData:String): ArrayBuffer[String] = {
+    val changeIdx = header.indexOf(originData)
+    if (changeIdx == -1)
+      println("해당 컬럼은 찾을 수 없음")
+    else
+      header(changeIdx) = changeData
+    header
   }
+
+  def columnChagne(header:ArrayBuffer[String],originDataIdx:Int, changeData:String): ArrayBuffer[String] = {
+    if (originDataIdx > header.length)
+      println("해당 컬럼은 존재하지 않습니다")
+    else
+      header(originDataIdx) = changeData
+    header
+  }
+
 }
