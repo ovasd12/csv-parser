@@ -35,7 +35,6 @@ class ReadInfo {
 
   //조회한 컬럼내용 변경기능
   def columnChange(header:List[String],originData:String,changeData:String): List[String] = {
-
     val changeIdx = header.indexOf(originData)
     if (changeIdx == -1) {
       println("해당 컬럼은 찾을 수 없음")
@@ -47,11 +46,7 @@ class ReadInfo {
   }
 
   def columnChangeNum(header:List[String], originDataIdx:Int, changeData:String): List[String] = {
-    println("header : " + header + " || originDataIdx : " + originDataIdx + " || changeData : " + changeData + " || header.length : " + header.length)
-//    if (originDataIdx >= header.length)
-    val t = originDataIdx
-    val a = header.length
-    if( originDataIdx > header.length  ) {
+    if( originDataIdx >= header.length  ) {
       println("해당 컬럼은 존재하지 않습니다")
       header
     }else{
