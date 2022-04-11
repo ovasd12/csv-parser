@@ -19,11 +19,10 @@ class ReadInfoTest extends FunSuite {
     val csvInfo = new CsvInfo(path, delimiter = ",", wrapper = "\"")
     val parser = Parser.parse(csvInfo,(path:String)=>Source.fromFile(path).getLines.toList)
 
-    println(parser.CsvValue.getHeader2().toList)
-    parser.CsvValue.getHeader2.toArray()
+//    println(parser.CsvValue.getHeader2().toList)
+//    parser.CsvValue.getHeader2.toArray()
 
   }
-
   test("list file read test"){
     val listFile = List("src/main/resources/test.csv", "src/main/resources/test2.csv" , "src/main/resources/test3.csv")
     val t = new ReadInfo
@@ -35,8 +34,8 @@ class ReadInfoTest extends FunSuite {
     println("ddd : " + t.fileUnion(listFile))
   }
   test("changeColumn"){
-    val testData = Array("제품코드", "제품명", "수량","단가","금액","위치") // 현재 list로 받고 있으므로 컬럼변경을 위해선 array로 변경 필요
-
+//    val testData = Array("제품코드", "제품명", "수량","단가","금액","위치") // 현재 list로 받고 있으므로 컬럼변경을 위해선 array로 변경 필요
+    val testData = List("제품코드", "제품명", "수량","단가","금액","위치")
     val standardData = "제품코드"
     val changeData = "제품이름111"
     val changeData2 = "수량량"
@@ -47,7 +46,18 @@ class ReadInfoTest extends FunSuite {
 //    testData(changeNum) = changeData2
 
     val t = new ReadInfo
-    println(t.columnChagne(testData,standardData,changeData).toList)
-    println(t.columnChagne(testData,5,changeData).toList)
+    println(t.columnChange(testData,standardData,changeData).toList)
+    println(t.columnChangeNum(testData,2,changeData).toList)
+  }
+  test("ListChangeTest"){
+    val testData = List("1","2","3","4")
+
+    val t = testData.updated(0,8)
+    println("tttt : " + t)
+
+    val mainList = List(3, 2, 1)
+
+    val mainList2 = mainList.patch(0, Seq(9), 0)
+    println("mainList-->"+mainList2)
   }
 }

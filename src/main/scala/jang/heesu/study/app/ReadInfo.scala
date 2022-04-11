@@ -10,14 +10,19 @@ import scala.io.Source
  * */
 class ReadInfo {
 
+  def readFileHead(path: String): List[String] ={
+    val fileValue = Source.fromFile(path).getLines.toList.head.split(",").toList
+    fileValue
+  }
   //파일 읽는 기능
   def readFile(path: String ): List[String] ={
-    val fileValue = Source.fromFile(path).getLines.toList
+    val fileValue = Source.fromFile(path).getLines.toList.tail
     fileValue
   }
   //여러 파일을 동시에 받아오는 기능
   def fileUnion(listFile:List[String]): ArrayBuffer[List[String]] ={
     val multData = ArrayBuffer[List[String]]()
+    multData += this.readFileHead(listFile.toList.head)
     for(a<-0 until listFile.length){
       multData += this.readFile(listFile.toList(a).toString)
     }
@@ -29,21 +34,30 @@ class ReadInfo {
   }
 
   //조회한 컬럼내용 변경기능
-  def columnChagne(header:ArrayBuffer[String],originData:String,changeData:String): ArrayBuffer[String] = {
+  def columnChange(header:List[String],originData:String,changeData:String): List[String] = {
+
     val changeIdx = header.indexOf(originData)
-    if (changeIdx == -1)
+    if (changeIdx == -1) {
       println("해당 컬럼은 찾을 수 없음")
-    else
-      header(changeIdx) = changeData
-    header
+      header
+    } else {
+      val newList = header.updated(changeIdx,changeData)
+      newList
+    }
   }
 
-  def columnChagne(header:ArrayBuffer[String],originDataIdx:Int, changeData:String): ArrayBuffer[String] = {
-    if (originDataIdx > header.length)
+  def columnChangeNum(header:List[String], originDataIdx:Int, changeData:String): List[String] = {
+    println("header : " + header + " || originDataIdx : " + originDataIdx + " || changeData : " + changeData + " || header.length : " + header.length)
+//    if (originDataIdx >= header.length)
+    val t = originDataIdx
+    val a = header.length
+    if( originDataIdx > header.length  ) {
       println("해당 컬럼은 존재하지 않습니다")
-    else
-      header(originDataIdx) = changeData
-    header
+      header
+    }else{
+      val newList = header.updated(originDataIdx, changeData)
+      newList
+    }
   }
 
 }

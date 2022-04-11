@@ -6,9 +6,7 @@ import scala.collection.mutable.ArrayBuffer
  * value 값의 대한 참조변수
  * */
 class CsvValue extends ArrayBuffer[List[String]] with CsvAbst {
-  def getHeader2(): Array[String] = {
-    this.head.toArray
-  }
+
   override def getHeader(): List[String] = {
     this.head
   }
