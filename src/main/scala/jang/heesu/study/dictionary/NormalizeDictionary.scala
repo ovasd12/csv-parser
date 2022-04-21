@@ -1,7 +1,5 @@
 package jang.heesu.study.dictionary
 
-import scala.collection.mutable.ArrayBuffer
-
 /**
  * dictionary 내용 저장할 객체
  * 추상화 된 사전, 어떤 사전이든 지켜야하는 기본값

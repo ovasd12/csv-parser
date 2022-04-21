@@ -1,6 +1,6 @@
 package jang.heesu.study.parser
 
-import jang.heesu.study.csv.{CsvInfo, Regular}
+import jang.heesu.study.csv.{CsvInfo, CsvInfoList, Regular}
 import jang.heesu.study.csv.Regular.REGULAR_SPLIT
 
 //object 키워드로 선언하는 객체는 클래스의 유일한 인스턴스를 넣기 위해 사용
@@ -15,10 +15,19 @@ object Parser {
 
   def parse(info: CsvInfo, reader:String => List[String]): CsvInfo = {
     val lines:List[String] = reader(info.getPath)
+    println("zzzz11 : " + lines)
     info.CsvValue ++= lines.map(line => parseLine(line, info.getDelimiter, info.getWrapper))
+
     info
     }
 
+  def parseList(info: CsvInfoList, reader:List[String] => List[String]): CsvInfoList = {
+    val lines:List[String] = reader(info.getPath)
+    println("zzzz22 : " + lines)
+    info.CsvValue ++= lines.map(line => parseLine(line, info.getDelimiter, info.getWrapper))
+
+    info
+  }
   def parseLine(line:String, delimiter:String, wrapper:String ): List[String] ={
     splitLine(line,delimiter).map(cell => removeWrapper(cell, wrapper))
   }

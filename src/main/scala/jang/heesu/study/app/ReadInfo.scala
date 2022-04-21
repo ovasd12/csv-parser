@@ -5,35 +5,50 @@ import scala.io.Source
 
 /**
  * 파일 읽고 조회한 데이터 가공
- *
- * @param
  * */
 class ReadInfo {
-
+  /**
+   * 파일 head 에 대한 정보 read
+   * 파일에 head 가 중복으로 있으므로 해당 함수로 한번의 head 정보 가져옴
+   * @param path
+   * */
   def readFileHead(path: String): List[String] ={
     val fileValue = Source.fromFile(path).getLines.toList.head.split(",").toList
     fileValue
   }
-  //파일 읽는 기능
+  /**
+   * 파일 읽기 기능
+   * @param path
+   * */
   def readFile(path: String ): List[String] ={
     val fileValue = Source.fromFile(path).getLines.toList.tail
     fileValue
   }
-  //여러 파일을 동시에 받아오는 기능
+  /**
+   * 여러 파일을 동시에 받아오는 기능
+   * @param listFile
+   * */
   def fileUnion(listFile:List[String]): ArrayBuffer[List[String]] ={
     val multData = ArrayBuffer[List[String]]()
-    multData += this.readFileHead(listFile.toList.head)
-    for(a<-0 until listFile.length){
-      multData += this.readFile(listFile.toList(a).toString)
-    }
+    multData += this.readFileHead(listFile.head)
+    listFile.foreach(row => {
+      multData += this.readFile(row)
+    })
     multData
   }
-  //여러 파일의 내용을 합치는 기능
+  /**
+   * 여러 파일의 내용을 합치는 기능
+   * @param multData
+   * */
   def fileSum(multData:ArrayBuffer[List[String]]): List[String] = {
     multData.flatMap(_.toList).toList
   }
-
-  //조회한 컬럼내용 변경기능
+  /**
+   * 컬럼으로 조회한 컬럼내용 변경기능
+   * @param header
+   * @param originData
+   * @param changeData
+   * */
   def columnChange(header:List[String],originData:String,changeData:String): List[String] = {
     val changeIdx = header.indexOf(originData)
     if (changeIdx == -1) {
@@ -44,7 +59,12 @@ class ReadInfo {
       newList
     }
   }
-
+  /**
+   * 인덱스로 조회한 컬럼내용 변경기능
+   * @param header
+   * @param originData
+   * @param changeData
+   * */
   def columnChangeNum(header:List[String], originDataIdx:Int, changeData:String): List[String] = {
     if( originDataIdx >= header.length  ) {
       println("해당 컬럼은 존재하지 않습니다")
