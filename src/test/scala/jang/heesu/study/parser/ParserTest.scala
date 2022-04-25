@@ -50,6 +50,8 @@ class ParserTest extends FunSuite{
 
     assert(parser.CsvValue.getHeader() == List("제품코드", "제품명", "수량", "단가", "금액", "위치"))
     assert(parser.CsvValue.getCol(0) == List("0001","0002","0003"))
+    println("path : " + Source.fromFile(path).getLines.toList)
+    println("csvinfo : " + csvInfo.CsvValue)
     assert(parser.CsvValue.getCol("제품명") == List("A","B","C"))
     assert(parser.CsvValue.getCol("제품코드","0003") == List("0003","C","3","300","3000","권선구,권선동"))
 

@@ -1,6 +1,6 @@
 package jang.heesu.study.parser
 
-import jang.heesu.study.csv.{CsvInfo, CsvInfoList, Regular}
+import jang.heesu.study.csv.{CsvInfo, CsvInfoList}
 import jang.heesu.study.csv.Regular.REGULAR_SPLIT
 
 //object 키워드로 선언하는 객체는 클래스의 유일한 인스턴스를 넣기 위해 사용
@@ -8,22 +8,18 @@ import jang.heesu.study.csv.Regular.REGULAR_SPLIT
 object Parser {
   /**
    * csv 파일의 내용을 dictionary 와 비교하여 정리 된 데이터로 만들어준다
-   * @param info  파일에 대한 정보, 파일의 내용을 읽는 기능
-   * @param reader
+   * @param info  CsvInfo 정보(파일경로, 구분자, Wrapper)
+   * @param reader 읽은 파일 데이터
    * @return CsvInfo  파일의 컬럼, value 값
    * */
-
   def parse(info: CsvInfo, reader:String => List[String]): CsvInfo = {
     val lines:List[String] = reader(info.getPath)
-    println("zzzz11 : " + lines)
     info.CsvValue ++= lines.map(line => parseLine(line, info.getDelimiter, info.getWrapper))
 
     info
     }
-
   def parseList(info: CsvInfoList, reader:List[String] => List[String]): CsvInfoList = {
     val lines:List[String] = reader(info.getPath)
-    println("zzzz22 : " + lines)
     info.CsvValue ++= lines.map(line => parseLine(line, info.getDelimiter, info.getWrapper))
 
     info

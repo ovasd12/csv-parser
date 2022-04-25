@@ -27,3 +27,21 @@ union 파일 2개 읽어서 합치기
 0. 파일 읽어서 println 출력
 1. 조회해온 데이터의 컬럼 변경기능
 2. union 파일 2개 이상 읽어서 합치는 기능
+
+22.04.25 
+* 개발 필요한 항목
+0. 다중 파일 입력 데이터의 parser
+1. map, foreach, flatten, flatmap 정리
+- flatten
+  . 콜렉션을 펼쳐놓는 메소드
+  . list 의 list, Araay 의 array 를 list 로 변환
+- map
+  . 기본형식 : Map("one" -> 1, "two" -> 2)
+  . 자료형으로 사용시에는 Map 안에 위와 같은 형식으로 데이터를 넣는다.
+  . 변형의 의미로 사용할 경우 : listData.map{a=>a+1} 이런식으로 항목에 대한 값 변형 줄 수 있음
+- flatmap
+  . map 에 flatten 합성한 메소드
+- map 과 flatmap 의 차이
+  . map은 감싼 타입을 그대로 내보내서 None 도 내보내지지만, flatmap은 감싼 타입을 벗겨내서 None이 없어짐
+    이 특성을 이용하여 에러가 없는 결과값을 연속적으로 사용하는게 가능
+2. 전체 항목 조회 후 뒤에 "a" 붙이기

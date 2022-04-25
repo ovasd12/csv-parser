@@ -4,7 +4,6 @@ import jang.heesu.study.csv.{CsvInfo, CsvInfoList}
 import jang.heesu.study.parser.Parser
 import org.scalatest.FunSuite
 
-import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
 
 class ReadInfoTest extends FunSuite {
@@ -42,30 +41,42 @@ class ReadInfoTest extends FunSuite {
     val mainList2 = mainList.patch(0, Seq(9), 0)
     println("mainList-->"+mainList2)
   }
-  test("total data of print test"){
+  test("Test of flattenString"){
     val listFile = List("src/main/resources/test.csv", "src/main/resources/test2.csv" , "src/main/resources/test3.csv")
-    val fileData = ArrayBuffer[List[String]]()
-    val csvInfoList = new CsvInfoList(listFile,delimiter = ",", wrapper = "\"")
-
-    val readInfo = new ReadInfo
-    Parser.parseList(csvInfoList, (listFile:List[String])=>listFile)
-    println("totalData : " + readInfo.fileUnion(listFile).flatten.toList)
-    println("aaaa : " + csvInfoList.CsvValue)
-
     val path = "src/main/resources/test.csv"
-    val csvInfo = new CsvInfo(path, delimiter = ",", wrapper = "\"")
-    Parser.parse(csvInfo,(path:String)=>Source.fromFile(path).getLines.toList)
-    println("parser : " + flattenString(csvInfo) )
+    val readInfo = new ReadInfo
+    val fileData = readInfo.fileUnion(listFile)
+    val csvInfo = new CsvInfo(listFile(0), delimiter = ",", wrapper = "\"")
+    Parser.parse(csvInfo,(listFile:String)=>fileData.flatten.toList)
+    println("flattenString test111 : " + flattenString(csvInfo))
+  }
+  test("parser test of total data "){
+    val listFile = List("src/main/resources/test.csv", "src/main/resources/test2.csv" , "src/main/resources/test3.csv")
+    val readInfo = new ReadInfo
+    val fileData = readInfo.fileUnion(listFile)
+    val csvInfoList = new CsvInfoList(listFile, delimiter = ",", wrapper = "\"")
+    Parser.parseList(csvInfoList,(listFile:List[String])=>fileData.flatten.toList)
+    println("parserList : " + flattenList(csvInfoList) )
   }
   def flattenString(info:CsvInfo): List[String] ={
     info.CsvValue.flatten.toList
   }
-  def flattenString2(infoList:CsvInfoList): List[String] ={
-    infoList.CsvValue.flatten.toList
+  def flattenList(info:CsvInfoList): List[String] ={
+    info.CsvValue.flatten.toList
+  }
+  test("test of list add char"){
+    val listFile = List("src/main/resources/test.csv", "src/main/resources/test2.csv" , "src/main/resources/test3.csv")
+    val readInfo = new ReadInfo
+    val fileData = readInfo.fileUnion(listFile)
+    val csvInfoList = new CsvInfoList(listFile,delimiter = ",", wrapper = "\"")
+    Parser.parseList(csvInfoList,(_:List[String])=>fileData.flatten.toList)
+//    val addChar = flattenList(csvInfoList).map{ x => x + "aa"}
+    val addCharTest = addChar(csvInfoList)
+    println("addCharTest : " + addCharTest)
+    flattenList(csvInfoList).foreach(a=>println(s"$a" + "aa"))
+  }
+  def addChar(info:CsvInfoList): List[String] ={
+    flattenList(info).map{x => x + "aa"}
   }
 
-  /**
-  * 1. map, foreach, flatten, flatmap
-   * 2. 전체 항목 조회 후 뒤에 "a" 붙이기
-  * */
 }

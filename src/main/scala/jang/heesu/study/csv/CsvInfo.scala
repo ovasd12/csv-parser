@@ -23,7 +23,7 @@ class CsvInfo(path: String, delimiter: String, wrapper: String) {
     delimiter
   }
   /**
-   * 앞뒤로 감싼 값
+   * 앞뒤로 감싼 Wrapper
    * */
   def getWrapper: String = {
     wrapper
@@ -44,7 +44,7 @@ class CsvInfoList(path: List[String], delimiter: String, wrapper: String) {
     delimiter
   }
   /**
-   * 앞뒤로 감싼 값
+   * 앞뒤로 감싼 Wrapper
    * */
   def getWrapper: String = {
     wrapper
