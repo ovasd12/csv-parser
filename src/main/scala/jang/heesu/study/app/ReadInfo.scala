@@ -10,7 +10,7 @@ class ReadInfo {
   /**
    * 파일 head 에 대한 정보 read
    * 파일에 head 가 중복으로 있으므로 해당 함수로 한번의 head 정보 가져옴
-   * @param path
+   * @param path 파일의 대한 경로
    * */
   def readFileHead(path: String): List[String] ={
     val fileValue = Source.fromFile(path).getLines.toList.head.split(",").toList
@@ -18,7 +18,7 @@ class ReadInfo {
   }
   /**
    * 파일 읽기 기능
-   * @param path
+   * @param path 파일에 대한 경로
    * */
   def readFile(path: String ): List[String] ={
     val fileValue = Source.fromFile(path).getLines.toList.tail
@@ -26,7 +26,7 @@ class ReadInfo {
   }
   /**
    * 여러 파일을 동시에 받아오는 기능
-   * @param listFile
+   * @param listFile 여러파일에 대한 데이터 정보
    * */
   def fileUnion(listFile:List[String]): ArrayBuffer[List[String]] ={
     val multData = ArrayBuffer[List[String]]()

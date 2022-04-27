@@ -45,7 +45,7 @@ object Parser {
   /**
    * wrapper 로 감싸져있는 데이터에서 wrapper 제거하는 기능
    * @param cell  wrapper 로 감싸져있는 데이터
-   * @param wrapper warpper 문자열
+   * @param wrapper warpper 문자열입
    * */
   def removeWrapper(cell:String, wrapper:String) : String={
     if (isWrapped(cell, wrapper)) cell.trim.substring(1,cell.length-1)
