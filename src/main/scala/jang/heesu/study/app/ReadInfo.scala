@@ -27,14 +27,17 @@ class ReadInfo {
   /**
    * 여러 파일을 동시에 받아오는 기능
    * @param listFile 여러파일에 대한 데이터 정보
+   *                 @return union data
    * */
-  def fileUnion(listFile:List[String]): ArrayBuffer[List[String]] ={
-    val multData = ArrayBuffer[List[String]]()
-    multData += this.readFileHead(listFile.head)
-    listFile.foreach(row => {
-      multData += this.readFile(row)
-    })
-    multData
+  def fileUnion(listFile:List[String]): List[List[String]] ={
+//    val multData = ArrayBuffer[List[String]]()
+//    multData += this.readFileHead(listFile.head)
+//    listFile.foreach(row => {
+//      multData += this.readFile(row)
+//    })
+//    multData
+    println("ddd : " + readFile(listFile.head))
+    List(readFile(listFile.head)) ++ listFile.map(file=>readFile(file).tail)
   }
   /**
    * 여러 파일의 내용을 합치는 기능
