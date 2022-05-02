@@ -3,7 +3,6 @@ package jang.heesu.study.app
 import jang.heesu.study.csv.{CsvInfo, CsvInfoList}
 import jang.heesu.study.parser.Parser
 import org.scalatest.FunSuite
-
 import scala.io.Source
 
 class ReadInfoTest extends FunSuite {
